@@ -7,16 +7,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   List<String> list = [
+    'assets/images/sad.png',
     'assets/images/mid.png',
-    'assets/images/mid.png',
-    'assets/images/mid.png',
-    'assets/images/mid.png'
+    'assets/images/happy.png'
   ];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Example',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -38,6 +37,7 @@ class MyApp extends StatelessWidget {
         maxValueWidget: Text('max'),
         minValueWidget: Text('min'),
         defaultSliderValue: 0,
+
       ),
     );
   }
