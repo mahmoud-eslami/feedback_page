@@ -10,6 +10,13 @@ class FeedbackPage extends StatefulWidget {
 class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.amber,
+      body: Container(
+        child: Center(
+          child: Text('Test Package'),
+        ),
+      ),
+    );
   }
 }
