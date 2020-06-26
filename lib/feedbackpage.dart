@@ -134,8 +134,8 @@ class _FeedbackPageState extends State<FeedbackPage>
     _btnHeight = widget.btnHeight ?? 50;
     _btnWidth = widget.btnWidth ?? 200;
 
-    _alignmentControllerDuration = widget.alignmentControllerDuration ?? Duration(seconds: 1);
-    _zoomControllerDuration = widget.zoomControllerDuration ?? Duration(milliseconds: 300);
+    _alignmentControllerDuration = widget.alignmentControllerDuration ?? Duration(milliseconds: 700);
+    _zoomControllerDuration = widget.zoomControllerDuration ?? Duration(milliseconds: 200);
     _alignmentAnimationCurve = widget.alignmentAnimationCurve ?? Curves.ease;
     _zoomAnimationCurve = widget.zoomAnimationCurve ?? Curves.ease;
 
@@ -144,9 +144,9 @@ class _FeedbackPageState extends State<FeedbackPage>
           ..forward();
     _zoomController =
         AnimationController(vsync: this, duration: _zoomControllerDuration);
-    _alignmentAnimation = Tween<Alignment>()
+    _alignmentAnimation = Tween<Alignment>(begin: Alignment(-20, 0),end: Alignment(0, 0))
         .animate(CurvedAnimation(parent: _alignmentController, curve: _alignmentAnimationCurve));
-    _zoomAnimation = Tween<double>()
+    _zoomAnimation = Tween<double>(begin: 1,end: 0)
         .animate(CurvedAnimation(parent: _zoomController, curve: _zoomAnimationCurve));
 
     super.initState();
@@ -185,10 +185,13 @@ class _FeedbackPageState extends State<FeedbackPage>
             widget.mainTitle,
             style: _mainTitleStyle,
           ),
-          Image.asset(
-            widget.imgPath[_currentIndex],
-            width: widget.imageWidth,
-            height: widget.imageHeight,
+          AlignTransition(
+            alignment: _alignmentAnimation,
+            child: Image.asset(
+              widget.imgPath[_currentIndex],
+              width: widget.imageWidth,
+              height: widget.imageHeight,
+            ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
