@@ -6,6 +6,13 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  List<String> list = [
+    'assets/images/mid.png',
+    'assets/images/mid.png',
+    'assets/images/mid.png',
+    'assets/images/mid.png'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,9 +21,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FeedbackPage(imgPath: 'assets/images/mid.png',),
+      home: FeedbackPage(
+        imgPath: list,
+      ),
     );
   }
 }
-
-
