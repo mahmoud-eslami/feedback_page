@@ -222,20 +222,10 @@ class _FeedbackPageState extends State<FeedbackPage>
                               ..forward()
                               ..addStatusListener((status) {
                                 if (status == AnimationStatus.completed) {
-                                  if (_sliderValue > 0 && _sliderValue <= 10) {
-                                    setState(() {
-                                      _currentIndex = 0;
-                                    });
-                                  } else if (_sliderValue > 10 &&
-                                      _sliderValue <= 20) {
-                                    setState(() {
-                                      _currentIndex = 1;
-                                    });
-                                  } else if (_sliderValue > 20) {
-                                    setState(() {
-                                      _currentIndex = 2;
-                                    });
-                                  }
+                                  var index = ((_sliderValue / 10) % widget.imgPath.length).toInt();
+                                  setState(() {
+                                    _currentIndex = index;
+                                  });
                                   _zoomController.reverse();
                                 }
                               });
@@ -243,7 +233,7 @@ class _FeedbackPageState extends State<FeedbackPage>
                         },
                         divisions: widget.imgPath.length,
                         min: _minSliderValue,
-                        max: _maxSliderValue,
+                        max: _maxSliderValue - 1,
                       ),
                     ),
                   ),
