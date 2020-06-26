@@ -107,6 +107,7 @@ class _FeedbackPageState extends State<FeedbackPage>
   Duration _zoomControllerDuration;
   Curve _alignmentAnimationCurve;
   Curve _zoomAnimationCurve;
+
   @override
   void initState() {
     _currentIndex = 0;
@@ -134,20 +135,25 @@ class _FeedbackPageState extends State<FeedbackPage>
     _btnHeight = widget.btnHeight ?? 50;
     _btnWidth = widget.btnWidth ?? 200;
 
-    _alignmentControllerDuration = widget.alignmentControllerDuration ?? Duration(milliseconds: 700);
-    _zoomControllerDuration = widget.zoomControllerDuration ?? Duration(milliseconds: 200);
+    _alignmentControllerDuration =
+        widget.alignmentControllerDuration ?? Duration(milliseconds: 700);
+    _zoomControllerDuration =
+        widget.zoomControllerDuration ?? Duration(milliseconds: 200);
     _alignmentAnimationCurve = widget.alignmentAnimationCurve ?? Curves.ease;
     _zoomAnimationCurve = widget.zoomAnimationCurve ?? Curves.ease;
 
     _alignmentController =
-        AnimationController(vsync: this, duration: _alignmentControllerDuration)
-          ..forward();
+    AnimationController(vsync: this, duration: _alignmentControllerDuration)
+      ..forward();
     _zoomController =
         AnimationController(vsync: this, duration: _zoomControllerDuration);
-    _alignmentAnimation = Tween<Alignment>(begin: Alignment(-20, 0),end: Alignment(0, 0))
-        .animate(CurvedAnimation(parent: _alignmentController, curve: _alignmentAnimationCurve));
-    _zoomAnimation = Tween<double>(begin: 1,end: 0)
-        .animate(CurvedAnimation(parent: _zoomController, curve: _zoomAnimationCurve));
+    _alignmentAnimation =
+        Tween<Alignment>(begin: Alignment(-20, 0), end: Alignment(0, 0))
+            .animate(CurvedAnimation(
+            parent: _alignmentController, curve: _alignmentAnimationCurve));
+    _zoomAnimation = Tween<double>(begin: 1, end: 0)
+        .animate(
+        CurvedAnimation(parent: _zoomController, curve: _zoomAnimationCurve));
 
     super.initState();
   }
@@ -187,10 +193,13 @@ class _FeedbackPageState extends State<FeedbackPage>
           ),
           AlignTransition(
             alignment: _alignmentAnimation,
-            child: Image.asset(
-              widget.imgPath[_currentIndex],
-              width: widget.imageWidth,
-              height: widget.imageHeight,
+            child: ScaleTransition(
+              scale: _zoomAnimation,
+              child: Image.asset(
+                widget.imgPath[_currentIndex],
+                width: widget.imageWidth,
+                height: widget.imageHeight,
+              ),
             ),
           ),
           Padding(
@@ -209,6 +218,13 @@ class _FeedbackPageState extends State<FeedbackPage>
                         onChanged: (value) {
                           setState(() {
                             _sliderValue = value;
+                            _zoomController
+                              ..forward()
+                              ..addStatusListener((status) {
+                                if (status == AnimationStatus.completed) {
+                                  _zoomController.reverse();
+                                }
+                              });
                           });
                         },
                         divisions: widget.imgPath.length,
@@ -228,7 +244,7 @@ class _FeedbackPageState extends State<FeedbackPage>
             child: RaisedButton(
               shape: RoundedRectangleBorder(
                 borderRadius:
-                    BorderRadius.all(Radius.circular(_btnBorderRadius)),
+                BorderRadius.all(Radius.circular(_btnBorderRadius)),
               ),
               color: _btnColor,
               onPressed: widget.btnOnPress,
