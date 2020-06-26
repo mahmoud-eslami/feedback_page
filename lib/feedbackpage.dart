@@ -29,8 +29,6 @@ class FeedbackPage extends StatefulWidget {
   final Widget minValueWidget;
   final Widget maxValueWidget;
   final double defaultSliderValue;
-  final double minSliderValue;
-  final double maxSliderValue;
 
   //submit btn value
   final Widget btnChild;
@@ -66,8 +64,6 @@ class FeedbackPage extends StatefulWidget {
     @required this.minValueWidget,
     @required this.maxValueWidget,
     this.defaultSliderValue = 0,
-    @required this.minSliderValue,
-    @required this.maxSliderValue,
     @required this.btnChild,
     @required this.btnOnPress,
     this.btnColor,
@@ -96,6 +92,8 @@ class _FeedbackPageState extends State<FeedbackPage>
   double _btnHeight;
   double _btnBorderRadius;
   Color _btnColor;
+  double _minSliderValue;
+  double _maxSliderValue;
 
   AnimationController _alignmentController;
   AnimationController _zoomController;
@@ -135,6 +133,9 @@ class _FeedbackPageState extends State<FeedbackPage>
     _btnHeight = widget.btnHeight ?? 50;
     _btnWidth = widget.btnWidth ?? 200;
 
+    _minSliderValue = 0;
+    _maxSliderValue = (widget.imgPath.length * 10).toDouble();
+
     _alignmentControllerDuration =
         widget.alignmentControllerDuration ?? Duration(milliseconds: 700);
     _zoomControllerDuration =
@@ -143,16 +144,15 @@ class _FeedbackPageState extends State<FeedbackPage>
     _zoomAnimationCurve = widget.zoomAnimationCurve ?? Curves.ease;
 
     _alignmentController =
-    AnimationController(vsync: this, duration: _alignmentControllerDuration)
-      ..forward();
+        AnimationController(vsync: this, duration: _alignmentControllerDuration)
+          ..forward();
     _zoomController =
         AnimationController(vsync: this, duration: _zoomControllerDuration);
     _alignmentAnimation =
         Tween<Alignment>(begin: Alignment(-20, 0), end: Alignment(0, 0))
             .animate(CurvedAnimation(
-            parent: _alignmentController, curve: _alignmentAnimationCurve));
-    _zoomAnimation = Tween<double>(begin: 1, end: 0)
-        .animate(
+                parent: _alignmentController, curve: _alignmentAnimationCurve));
+    _zoomAnimation = Tween<double>(begin: 1, end: 0).animate(
         CurvedAnimation(parent: _zoomController, curve: _zoomAnimationCurve));
 
     super.initState();
@@ -222,14 +222,28 @@ class _FeedbackPageState extends State<FeedbackPage>
                               ..forward()
                               ..addStatusListener((status) {
                                 if (status == AnimationStatus.completed) {
+                                  if (_sliderValue > 0 && _sliderValue <= 10) {
+                                    setState(() {
+                                      _currentIndex = 0;
+                                    });
+                                  } else if (_sliderValue > 10 &&
+                                      _sliderValue <= 20) {
+                                    setState(() {
+                                      _currentIndex = 1;
+                                    });
+                                  } else if (_sliderValue > 20) {
+                                    setState(() {
+                                      _currentIndex = 2;
+                                    });
+                                  }
                                   _zoomController.reverse();
                                 }
                               });
                           });
                         },
-                        divisions: widget.imgPath.length - 1,
-                        min: widget.minSliderValue,
-                        max: widget.maxSliderValue,
+                        divisions: widget.imgPath.length,
+                        min: _minSliderValue,
+                        max: _maxSliderValue,
                       ),
                     ),
                   ),
@@ -244,7 +258,7 @@ class _FeedbackPageState extends State<FeedbackPage>
             child: RaisedButton(
               shape: RoundedRectangleBorder(
                 borderRadius:
-                BorderRadius.all(Radius.circular(_btnBorderRadius)),
+                    BorderRadius.all(Radius.circular(_btnBorderRadius)),
               ),
               color: _btnColor,
               onPressed: widget.btnOnPress,
