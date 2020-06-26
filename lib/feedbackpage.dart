@@ -45,31 +45,41 @@ class FeedbackPage extends StatefulWidget {
   //slider theme value
   final SliderThemeData sliderThemeData;
 
-  const FeedbackPage(
-      {Key key,
-      @required this.imgPath,
-      @required this.backgroundColor,
-      @required this.closeIcon,
-      this.closeIconColor = Colors.black,
-      this.closeIconSize = 30,
-      @required this.closeIconOnPress,
-      @required this.mainTitle,
-      this.mainTitleStyle,
-      this.imageWidth = 200,
-      this.imageHeight = 200,
-      @required this.minValueWidget,
-      @required this.maxValueWidget,
-      this.defaultSliderValue = 0,
-      @required this.minSliderValue,
-      @required this.maxSliderValue,
-      @required this.btnChild,
-      @required this.btnOnPress,
-      this.btnColor,
-      this.btnBorderRadius,
-      this.btnHeight,
-      this.btnWidth,
-      this.sliderThemeData})
-      : super(key: key);
+  //animation values
+  final Duration alignmentControllerDuration;
+  final Duration zoomControllerDuration;
+  final Curve alignmentAnimationCurve;
+  final Curve zoomAnimationCurve;
+
+  const FeedbackPage({
+    Key key,
+    @required this.imgPath,
+    @required this.backgroundColor,
+    @required this.closeIcon,
+    this.closeIconColor = Colors.black,
+    this.closeIconSize = 30,
+    @required this.closeIconOnPress,
+    @required this.mainTitle,
+    this.mainTitleStyle,
+    this.imageWidth = 200,
+    this.imageHeight = 200,
+    @required this.minValueWidget,
+    @required this.maxValueWidget,
+    this.defaultSliderValue = 0,
+    @required this.minSliderValue,
+    @required this.maxSliderValue,
+    @required this.btnChild,
+    @required this.btnOnPress,
+    this.btnColor,
+    this.btnBorderRadius,
+    this.btnHeight,
+    this.btnWidth,
+    this.sliderThemeData,
+    this.alignmentControllerDuration,
+    this.zoomControllerDuration,
+    this.alignmentAnimationCurve,
+    this.zoomAnimationCurve,
+  }) : super(key: key);
 
   @override
   _FeedbackPageState createState() => _FeedbackPageState();
@@ -93,6 +103,10 @@ class _FeedbackPageState extends State<FeedbackPage>
   Animation<Alignment> _alignmentAnimation;
   Animation<double> _zoomAnimation;
 
+  Duration _alignmentControllerDuration;
+  Duration _zoomControllerDuration;
+  Curve _alignmentAnimationCurve;
+  Curve _zoomAnimationCurve;
   @override
   void initState() {
     _currentIndex = 0;
@@ -119,6 +133,22 @@ class _FeedbackPageState extends State<FeedbackPage>
     _btnColor = widget.btnColor ?? Colors.black;
     _btnHeight = widget.btnHeight ?? 50;
     _btnWidth = widget.btnWidth ?? 200;
+
+    _alignmentControllerDuration = widget.alignmentControllerDuration ?? Duration(seconds: 1);
+    _zoomControllerDuration = widget.zoomControllerDuration ?? Duration(milliseconds: 300);
+    _alignmentAnimationCurve = widget.alignmentAnimationCurve ?? Curves.ease;
+    _zoomAnimationCurve = widget.zoomAnimationCurve ?? Curves.ease;
+
+    _alignmentController =
+        AnimationController(vsync: this, duration: _alignmentControllerDuration)
+          ..forward();
+    _zoomController =
+        AnimationController(vsync: this, duration: _zoomControllerDuration);
+    _alignmentAnimation = Tween<Alignment>()
+        .animate(CurvedAnimation(parent: _alignmentController, curve: _alignmentAnimationCurve));
+    _zoomAnimation = Tween<double>()
+        .animate(CurvedAnimation(parent: _zoomController, curve: _zoomAnimationCurve));
+
     super.initState();
   }
 
@@ -194,7 +224,8 @@ class _FeedbackPageState extends State<FeedbackPage>
             width: _btnWidth,
             child: RaisedButton(
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(_btnBorderRadius)),
+                borderRadius:
+                    BorderRadius.all(Radius.circular(_btnBorderRadius)),
               ),
               color: _btnColor,
               onPressed: widget.btnOnPress,
