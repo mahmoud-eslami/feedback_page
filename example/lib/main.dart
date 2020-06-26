@@ -23,6 +23,21 @@ class MyApp extends StatelessWidget {
       ),
       home: FeedbackPage(
         imgPath: list,
+        backgroundColor: Colors.amber,
+        closeIcon: Icons.close,
+        closeIconOnPress: () {
+          print('close clicked');
+        },
+        btnChild: Text('Done',style: TextStyle(color: Colors.white),),
+        btnOnPress: () {
+          print('clicked');
+        },
+        mainTitle: 'What is your feedback ?!',
+        maxSliderValue: 30,
+        minSliderValue: 0,
+        maxValueWidget: Text('max'),
+        minValueWidget: Text('min'),
+        defaultSliderValue: 0,
       ),
     );
   }
