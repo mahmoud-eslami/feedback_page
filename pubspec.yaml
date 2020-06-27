@@ -1,7 +1,7 @@
 name: feedback_page
 description: A new Flutter package for add feedback page to your application.
 version: 0.0.1
-author: Mahmoud Eslami<eslamimahmoud98@gmail.com>
+author: Mahmoud Eslami <eslamimahmoud98@gmail.com>
 homepage: https://github.com/mahmoud-eslami/feedback_page
 
 environment:

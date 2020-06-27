@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:feedback_page/feedbackpage.dart';
+import 'package:feedback_page/feedback_page.dart';
 
 void main() {
   runApp(MyApp());
