@@ -7,12 +7,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  List<String> list = [
-    'assets/images/sad.png',
-    'assets/images/mid.png',
-    'assets/images/happy.png',
-  ];
-
   @override
   Widget build(BuildContext context) {
     var value = 0;
@@ -22,49 +16,90 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FeedbackPage(
-        imgPath: list,
-        backgroundColor: Colors.amber,
-        closeIcon: Icons.close,
-        closeIconOnPress: () {
-          print('close clicked');
-        },
-        btnChild: Text(
-          'Done',
-          style: TextStyle(color: Colors.white),
+      home: First(),
+    );
+  }
+}
+
+class First extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Second()));
+          },
+          child: Text('FeedBack Page'),
         ),
-        mainTitle: 'What is your feedback ?!',
-        maxValueWidget: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: Center(
-            child: Text(
-              'Good',
-              style:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        btnOnPress: (){},
-        minValueWidget: Container(
-          width: 50,
-          height: 50,
-          decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.all(Radius.circular(30))),
-          child: Center(
-            child: Text(
-              'Bad',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
-        ),
-        defaultSliderValue: 0,
       ),
+    );
+  }
+}
+
+class Second extends StatefulWidget {
+  @override
+  _SecondState createState() => _SecondState();
+}
+
+class _SecondState extends State<Second> {
+  List<String> list = [
+    'assets/images/sad.png',
+    'assets/images/mid.png',
+    'assets/images/happy.png',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    var myValue = 0.0;
+
+    return FeedbackPage(
+      percentCallback: (value) {
+        myValue = value;
+      },
+      imgPath: list,
+      backgroundColor: Colors.indigoAccent,
+      closeIcon: Icons.close,
+      closeIconOnPress: () {
+        print('close clicked');
+        print(myValue);
+      },
+      btnChild: Text(
+        'Done',
+        style: TextStyle(color: Colors.white),
+      ),
+      mainTitle: 'What is your feedback ?!',
+      maxValueWidget: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.all(Radius.circular(30))),
+        child: Center(
+          child: Text(
+            'Good',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      btnOnPress: () {
+        Navigator.pop(context);
+      },
+      minValueWidget: Container(
+        width: 50,
+        height: 50,
+        decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.all(Radius.circular(30))),
+        child: Center(
+          child: Text(
+            'Bad',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      defaultSliderValue: 0,
     );
   }
 }

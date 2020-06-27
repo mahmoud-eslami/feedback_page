@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 class FeedbackPage extends StatefulWidget {
   // get argument from user
 
+  //call back for slider value
+  final Function(double) percentCallback;
+
   //array of images
   final List<String> imgPath;
 
@@ -51,6 +54,7 @@ class FeedbackPage extends StatefulWidget {
 
   const FeedbackPage({
     Key key,
+    this.percentCallback,
     @required this.imgPath,
     @required this.backgroundColor,
     @required this.closeIcon,
@@ -167,6 +171,7 @@ class _FeedbackPageState extends State<FeedbackPage>
 
   @override
   Widget build(BuildContext context) {
+    var perPercent = 0.0 ;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -222,8 +227,11 @@ class _FeedbackPageState extends State<FeedbackPage>
                               ..forward()
                               ..addStatusListener((status) {
                                 if (status == AnimationStatus.completed) {
+                                  //calculate current index
                                   var index = ((_sliderValue / 10) % widget.imgPath.length).toInt();
                                   setState(() {
+                                    perPercent = (index / (widget.imgPath.length - 1)) * 100;
+                                    widget.percentCallback(perPercent);
                                     _currentIndex = index;
                                   });
                                   _zoomController.reverse();
