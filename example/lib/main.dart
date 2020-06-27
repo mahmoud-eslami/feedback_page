@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:feedback_page/feedbackpage.dart';
 
@@ -9,11 +10,12 @@ class MyApp extends StatelessWidget {
   List<String> list = [
     'assets/images/sad.png',
     'assets/images/mid.png',
-    'assets/images/happy.png'
+    'assets/images/happy.png',
   ];
 
   @override
   Widget build(BuildContext context) {
+    var value = 0;
     return MaterialApp(
       title: 'Flutter Example',
       theme: ThemeData(
@@ -27,15 +29,41 @@ class MyApp extends StatelessWidget {
         closeIconOnPress: () {
           print('close clicked');
         },
-        btnChild: Text('Done',style: TextStyle(color: Colors.white),),
-        btnOnPress: () {
-          print('clicked');
-        },
+        btnChild: Text(
+          'Done',
+          style: TextStyle(color: Colors.white),
+        ),
         mainTitle: 'What is your feedback ?!',
-        maxValueWidget: Text('max'),
-        minValueWidget: Text('min'),
+        maxValueWidget: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Center(
+            child: Text(
+              'Good',
+              style:
+              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
+        btnOnPress: (){},
+        minValueWidget: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+          child: Center(
+            child: Text(
+              'Bad',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
         defaultSliderValue: 0,
-
       ),
     );
   }

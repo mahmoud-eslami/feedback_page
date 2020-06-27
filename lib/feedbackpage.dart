@@ -231,7 +231,7 @@ class _FeedbackPageState extends State<FeedbackPage>
                               });
                           });
                         },
-                        divisions: widget.imgPath.length,
+                        divisions: widget.imgPath.length - 1,
                         min: _minSliderValue,
                         max: _maxSliderValue - 1,
                       ),
