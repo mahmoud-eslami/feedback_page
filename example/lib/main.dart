@@ -59,7 +59,7 @@ class _SecondState extends State<Second> {
         myValue = value;
       },
       imgPath: list,
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.teal,
       closeIcon: Icons.close,
       closeIconOnPress: () {
         print('close clicked');
