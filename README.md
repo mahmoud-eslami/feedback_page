@@ -37,7 +37,7 @@ Now in your Dart code, you can use:
 ```
 import 'package:feedback_page/feedback_page.dart';
 ```
-# Widget contractor :
+# Widget constructor :
 
 |PropName		|Description	|default value|optional|
 |:---------------|:---------------|:-------|:-------|
