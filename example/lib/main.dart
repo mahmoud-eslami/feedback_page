@@ -59,44 +59,27 @@ class _SecondState extends State<Second> {
         myValue = value;
       },
       imgPath: list,
-      backgroundColor: Colors.teal,
+      backgroundColor: Colors.lightGreen,
       closeIcon: Icons.close,
       closeIconOnPress: () {
         print('close clicked');
         print(myValue);
       },
-      btnChild: Text(
-        'Done',
-        style: TextStyle(color: Colors.white),
-      ),
-      mainTitle: 'What is your feedback ?!',
-      maxValueWidget: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(30))),
-        child: Center(
-          child: Text(
-            'Good',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+      btnChild: Icon(Icons.check,color: Colors.white,),
+      mainTitle: 'Custom Title ...',
+      maxValueWidget: Center(
+        child: Text(
+          ':)',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
         ),
       ),
       btnOnPress: () {
         Navigator.pop(context);
       },
-      minValueWidget: Container(
-        width: 50,
-        height: 50,
-        decoration: BoxDecoration(
-            color: Colors.black,
-            borderRadius: BorderRadius.all(Radius.circular(30))),
-        child: Center(
-          child: Text(
-            'Bad',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+      minValueWidget: Center(
+        child: Text(
+          ':(',
+          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
       ),
       defaultSliderValue: 0,
