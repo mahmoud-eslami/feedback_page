@@ -6,7 +6,7 @@ Flutter `package` for add `feedback page` to your application.
 ## Show Cases
 
 | 1 | 2 | 3 | gif example |
-| ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ |
 | ![1](https://github.com/mahmoud-eslami/feedback_page/blob/master/example/showCase/rsz_screenshot_1593411057.png "1" )  |  ![2](https://github.com/mahmoud-eslami/feedback_page/blob/master/example/showCase/rsz_screenshot_1593411082.png "2") | ![3](https://github.com/mahmoud-eslami/feedback_page/blob/master/example/showCase/rsz_screenshot_1593445866.png "3") | ![gif example](https://github.com/mahmoud-eslami/feedback_page/blob/master/example/showCase/ezgif.com-video-to-gif.gif?raw=true "gif example")  |
 
 
