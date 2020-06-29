@@ -37,32 +37,32 @@ Now in your Dart code, you can use:
 ```
 import 'package:feedback_page/feedback_page.dart';
 ```
-## Widget description :
+# Widget contractor :
 
 |PropName		|Description	|default value|optional|
 |:---------------|:---------------|:-------|:-------|
-|percentCallback|is simply dummy text of the printing and typesetting industry|-|true|
-|imgPath|is simply dummy text of the printing and typesetting industry|-|false|
-|backgroundColor|is simply dummy text of the printing and typesetting industry|-|false|
-|closeIcon|is simply dummy text of the printing and typesetting industry|-|false|
-|closeIconColor|is simply dummy text of the printing and typesetting industry|Colors.black|true|
-|closeIconSize|is simply dummy text of the printing and typesetting industry|30|true|
-|closeIconOnPress|is simply dummy text of the printing and typesetting industry|-|false|
-|mainTitle|is simply dummy text of the printing and typesetting industry|-|false|
-|mainTitleStyle|is simply dummy text of the printing and typesetting industry|TextStyle(fontWeight: FontWeight.bold, fontSize: 30)|true|
-|imageWidth|is simply dummy text of the printing and typesetting industry|200|true|
-|imageHeight|is simply dummy text of the printing and typesetting industry|200|true|
-|minValueWidget|is simply dummy text of the printing and typesetting industry|-|false|
-|maxValueWidget|is simply dummy text of the printing and typesetting industry|-|false|
-|defaultSliderValue|is simply dummy text of the printing and typesetting industry|0|true|
-|btnChild|is simply dummy text of the printing and typesetting industry|-|false|
-|btnOnPress|is simply dummy text of the printing and typesetting industry|-|false|
-|btnColor|is simply dummy text of the printing and typesetting industry|Colors.black|true|
-|btnBorderRadius|is simply dummy text of the printing and typesetting industry|30|true|
-|btnHeight|is simply dummy text of the printing and typesetting industry|200|true|
-|btnWidth|is simply dummy text of the printing and typesetting industry|50|true|
-|sliderThemeData|is simply dummy text of the printing and typesetting industry|SliderThemeData()|true|
-|alignmentControllerDuration|is simply dummy text of the printing and typesetting industry|Duration(milliseconds: 700)|true|
-|zoomControllerDuration|is simply dummy text of the printing and typesetting industry|Duration(milliseconds: 200)|true|
-|alignmentAnimationCurve|is simply dummy text of the printing and typesetting industry|Curves.ease|true|
-|zoomAnimationCurve|is simply dummy text of the printing and typesetting industry|Curves.ease|true|
+|percentCallback|get slider value percent|-|true|
+|imgPath|list with string type involved assets of images|-|false|
+|backgroundColor|color of widget background|-|false|
+|closeIcon|this icon is locate top right in widget|-|false|
+|closeIconColor|color of closeIcon with Color type|Colors.black|true|
+|closeIconSize|size of closeIcon with double type|30|true|
+|closeIconOnPress|pass a function to this prop|-|false|
+|mainTitle|title is locate in tope center in widget pass a string to this prop|-|false|
+|mainTitleStyle|style of main title pass a TextStyle to this one|TextStyle(fontWeight: FontWeight.bold, fontSize: 30)|true|
+|imageWidth|pass double to this prop (size of image widget)|200|true|
+|imageHeight|pass double to this prop (size of image widget)|200|true|
+|minValueWidget|this widget shown in left side of slider|-|false|
+|maxValueWidget|this widget shown in left side of slider|-|false|
+|defaultSliderValue|default value of slider (thumb show you this value at first)|0|true|
+|btnChild|widget is type of this prop . widget is show in the button|-|false|
+|btnOnPress|pass a function to this prop|-|false|
+|btnColor|color of button with Color type|Colors.black|true|
+|btnBorderRadius|pass double to give value radius of button|30|true|
+|btnHeight|pass double to give value height of button|200|true|
+|btnWidth|pass double to give value width of button|50|true|
+|sliderThemeData|if you want have Custom slider pass SliderThemeData here|SliderThemeData()|true|
+|alignmentControllerDuration|Duration to forward alignment animation|Duration(milliseconds: 700)|true|
+|zoomControllerDuration|Duration to forward zoom(in/out) animation|Duration(milliseconds: 200)|true|
+|alignmentAnimationCurve|-|Curves.ease|true|
+|zoomAnimationCurve|-|Curves.ease|true|
