@@ -1,4 +1,5 @@
-# feedbackpage
+# feedback_page
+[![pub package](https://img.shields.io/pub/v/feedback_page?color=green&style=plastic)](https://pub.dartlang.org/packages/flutter_breadcrumb)
 
 A new Flutter package for add feedback page to your application.
 
