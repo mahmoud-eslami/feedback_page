@@ -1,5 +1,5 @@
 # feedback_page
-[![pub package](https://img.shields.io/pub/v/feedback_page?color=green&style=flat)](https://pub.dev/packages/feedback_page)
+[![pub package](https://img.shields.io/pub/v/feedback_page?color=green&style=flat-square)](https://pub.dev/packages/feedback_page)
 
 Flutter `package` for add `feedback page` to your application.
 
